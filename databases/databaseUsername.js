@@ -7,6 +7,9 @@ async function createUsername(req, res){
     if(!username){
         return res.status(400).send("Username is required")
     }
+    if(await database.checkUserExists(username)== true){
+        return res.send("User already exists")
+    }
     try{
         const result = await database.getDB().collection("users").insertOne({name: username})
 

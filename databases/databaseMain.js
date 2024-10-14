@@ -20,6 +20,7 @@ async function createUserdb(req, res) {
 
 async function checkUserExists(username){
     const response = await db.collection("users").findOne({username})
+    return response !== null; // Gibt true zurück, wenn der Benutzer existiert
 }
 
 function getDB(){
@@ -33,5 +34,6 @@ function getDB(){
 Object.assign(exports, {
     connectToDB,
     getDB,
-    createUserdb
+    createUserdb,
+    checkUserExists
 })
