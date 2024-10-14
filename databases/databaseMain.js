@@ -25,7 +25,7 @@ async function checkUserExists(username){
 }
 
 async function getAllMissions() {
-    await databaseMissions.getAllMissions()
+    return await databaseMissions.getAllMissions()
 }
 
 async function getNotPersonalisedMissions() {
