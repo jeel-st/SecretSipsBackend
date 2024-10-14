@@ -29,6 +29,7 @@ async function createUsername(req, res){
 async function addPoint(username) {
     try {
     const usersCollection = (await database.initializeCollections()).users;
+    console.log(username)
     const user = await usersCollection.findOne({ name: username })
     console.log(user)
     const points = user.points + 1
