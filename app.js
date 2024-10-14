@@ -18,3 +18,5 @@ app.use("/register", registerRouter)
 app.use("/static", express.static(__dirname + '/static'))
 
 app.listen(PORT, () => console.log('Server is listening on PORT 3000...'))
+
+//test commit
