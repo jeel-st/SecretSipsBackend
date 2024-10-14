@@ -6,6 +6,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 const PORT = 3000
 const { connectToDB } = require("./databases/databaseMain")
+
 connectToDB()
 
 
