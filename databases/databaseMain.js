@@ -16,7 +16,7 @@ async function connectToDB() {
 }
 
 async function createUserdb(req, res) {
-    await databaseUsername.createUsername(req, res)
+    return await databaseUsername.createUsername(req, res)
 }
 
 async function checkUserExists(username){
@@ -25,7 +25,7 @@ async function checkUserExists(username){
 }
 
 async function getAllMissions() {
-    await databaseMissions.getAllMissions()
+    return await databaseMissions.getAllMissions()
 }
 
 async function getNotPersonalisedMissions() {
@@ -33,7 +33,7 @@ async function getNotPersonalisedMissions() {
 }
 
 async function addPoint(username) {
-    return databaseUsername.addPoint(username);
+    return await databaseUsername.addPoint(username);
 }
 
 
