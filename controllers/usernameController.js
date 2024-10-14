@@ -11,6 +11,7 @@ async function createUsername(req, res) {
         } else if (result == "User already exists") {
             res.status(409).send("User already exists")
         } else {
+            console.log("Result from usertest: "+ result)
             const countUsers = await database.checkUserCount()
             console.log("countUsers "+ countUsers)
             try {
