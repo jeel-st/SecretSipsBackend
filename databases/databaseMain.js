@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb")
 const databaseUsername = require("./databaseUsername");
 const { get } = require("../routes/usernameRouter");
 
-async function createUsername(req, res) {
+async function createUsernamedB(req, res) {
     await databaseUsername.createUsername(req, res)
 }
 
@@ -26,6 +26,6 @@ function getDB(){
 
 module.exports =  {
     connectToDB,
-    createUsername,
+    createUsernamedB,
     getDB
 }
