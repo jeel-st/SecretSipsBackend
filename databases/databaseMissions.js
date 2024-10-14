@@ -10,7 +10,7 @@ async function getAllMissions() {
 }
 
 async function getNotPersonalisedMissions() {
-    const nonPersonalMissions = await database.getDB().missions.find({personal: "false"})
+    const nonPersonalMissions = await database.getDB().collection("missions").find({personal: "false"})
     console.log("nonPersonalMissions"+ nonPersonalMissions)
             if (nonPersonalMissions.length === 0) {
                 throw new Error("Keine nicht-personalisierten Missionen gefunden.");
