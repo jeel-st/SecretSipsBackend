@@ -10,7 +10,7 @@ async function distributeMission(username, personal) {
         console.log("mission selected: "+ mission.text)
     }else{
         const nonPersonalMissions = await database.getNotPersonalisedMissions()
-        console.log("All missions: "+ nonPersonalMissions)
+        console.log("All unpersonal missions: "+ nonPersonalMissions)
 
         mission = nonPersonalMissions[Math.floor(Math.random() * nonPersonalMissions.length)];
         console.log("mission selected: "+ mission.text)
