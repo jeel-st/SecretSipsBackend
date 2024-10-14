@@ -15,9 +15,9 @@ async function createUsername(req, res) {
             console.log("countUsers "+ countUsers)
             try {
                 if (countUsers > 5) {
-                    missionLogic.distributeMission(username, true)
+                    await missionLogic.distributeMission(username, true)
                 } else {
-                    missionLogic.distributeMission(username, false)
+                    await missionLogic.distributeMission(username, false)
                 }
             }catch(err){
                 res.send(500).send("Error while trying to distribute a mission to the player.")

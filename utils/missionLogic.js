@@ -4,12 +4,12 @@ async function distributeMission(username, personal) {
     const user = await database.getUser(username)
     let mission
     if(personal == true){
-        const allMissions = database.getAllMissions()
+        const allMissions = await database.getAllMissions()
 
         mission = allMissions[Math.floor(Math.random() * allMissions.length)];
         console.log("mission selected: "+ mission.text)
     }else{
-        const nonPersonalMissions = database.getNotPersonalisedMissions()
+        const nonPersonalMissions = await database.getNotPersonalisedMissions()
 
         mission = nonPersonalMissions[Math.floor(Math.random() * nonPersonalMissions.length)];
         console.log("mission selected: "+ mission.text)
