@@ -22,6 +22,5 @@ function getDB(){
 
 module.exports =  {
     connectToDB,
-    createUsernamedB,
     getDB
 }
