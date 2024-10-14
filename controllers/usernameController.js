@@ -3,12 +3,9 @@ const database = require("../databases/databaseMain")
 async function createUsername(req, res){
     try{
         const result = await database.createUsername(req, res)
-        if(result == ""){
-            return 0
-        }
-        return 0
+        res.send("Success!")
     }catch(err){
-        return 0
+        res.status(500).send("Something went wrong.")
     }
 }
 

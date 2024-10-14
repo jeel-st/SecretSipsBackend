@@ -1,5 +1,6 @@
 const { MongoClient } = require("mongodb")
-const databaseUsername = require("./databaseUsername")
+const databaseUsername = require("./databaseUsername");
+const { get } = require("../routes/usernameRouter");
 
 async function createUsername(req, res) {
     await databaseUsername.createUsername(req, res)
@@ -17,7 +18,14 @@ async function connectToDB() {
     });
 }
 
-Object.assign(exports, {
+
+function getDB(){
+    return  db
+}
+
+
+module.exports =  {
     connectToDB,
-    createUsername
-})
+    createUsername,
+    getDB
+}
