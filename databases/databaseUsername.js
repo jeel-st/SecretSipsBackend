@@ -7,7 +7,10 @@ async function createUsername(req, res){
     if(!username){
         return res.status(400).send("Username is required")
     }
-    if(await database.checkUserExists(username)== true){
+    const usernameDatabase = await database.checkUserExists(username)== true
+    console.log("usernameDatabase"+ usernameDatabase)
+    if(usernameDatabase){
+
         return res.send("User already exists")
     }
     try{
