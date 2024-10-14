@@ -34,7 +34,7 @@ async function createUsername(req, res) {
 async function addPoint(req, res) {
     try {
         const { username } = req.body
-        const result = await database.addPoint() 
+        const result = await database.addPoint(username) 
 
         if (result == true) {
             res.json("Point addded succesfully")
