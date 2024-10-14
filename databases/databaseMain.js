@@ -19,7 +19,7 @@ async function createUserdb(req, res) {
 }
 
 async function checkUserExists(username){
-    const response = await db.collection("users").findOne({username})
+    const response = await db.collection("users").findOne({name: username})
     return response !== null; // Gibt true zurück, wenn der Benutzer existiert
 }
 
