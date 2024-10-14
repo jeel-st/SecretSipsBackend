@@ -23,7 +23,7 @@ function getDB(){
 }
 
 
-module.exports =  {
+Object.assign(exports, {
     connectToDB,
     getDB
-}
+})
