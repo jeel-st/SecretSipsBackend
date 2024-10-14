@@ -34,6 +34,7 @@ async function getNotPersonalisedMissions() {
 
 async function checkUserCount() {
     try {
+        console.log("Went into checkusercount")
         const count = await db.collection("users").countDocuments();
 
         console.log(`Anzahl der Benutzer in der Collection: ${count}`);
