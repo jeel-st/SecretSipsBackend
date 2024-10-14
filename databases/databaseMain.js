@@ -29,8 +29,13 @@ async function getAllMissions() {
 }
 
 async function getNotPersonalisedMissions() {
-    await databaseMissions.getNotPersonalisedMissions()
+    return await databaseMissions.getNotPersonalisedMissions()
 }
+
+async function addPoint(username) {
+    return databaseUsername.addPoint(username);
+}
+
 
 async function checkUserCount() {
     try {
@@ -54,6 +59,15 @@ async function getUser(username) {
     return user
 }
 
+async function initializeCollections() {
+    const missions = db.collection("missions");
+    const users = db.collection("users");
+
+    return {
+        missions: missions,
+        users: users
+    };
+}
 
 function getDB(){
     if (!db) {
@@ -71,5 +85,7 @@ Object.assign(exports, {
     checkUserCount,
     getUser,
     getAllMissions,
-    getNotPersonalisedMissions
+    getNotPersonalisedMissions,
+    addPoint,
+    initializeCollections
 })

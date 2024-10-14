@@ -30,6 +30,22 @@ async function createUsername(req, res) {
     }
 }
 
+async function addPoint(req, res) {
+    try {
+        const { username } = req.body
+        const result = await database.addPoint() 
+
+        if (result == true) {
+            res.json("Point addded succesfully")
+        }else {
+            res.status(500).json("Internal servor error")
+        }
+    }catch (err) {
+        res.status(500).json("Something went wrong! " + err)
+    }
+}
+
 module.exports = {
-    createUsername
+    createUsername,
+    addPoint
 }

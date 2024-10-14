@@ -25,6 +25,10 @@ async function createUsername(req, res){
         throw new Error("User creation failed.")
     }
 }
+
+async function addPoint(username) {
+    
+}
 module.exports = {
     createUsername
 }
