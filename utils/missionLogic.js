@@ -16,7 +16,7 @@ async function distributeMission(username, personal) {
         mission = nonPersonalMissions[Math.floor(Math.random() * nonPersonalMissions.length)];
         console.log("mission selected: "+ mission.text)
     }
-    await db.collection("users").updateOne(
+    await database.getDB().collection("users").updateOne(
         { name: username }, // Suche nach dem Benutzernamen
         { $set: { missionActive: mission.id } }
     );
