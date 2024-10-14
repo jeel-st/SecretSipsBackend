@@ -1,8 +1,8 @@
-const database = require("../databases/databaseMain")
+const databaseUsername = require("../databases/databaseUsername")
 
 async function createUsername(req, res){
     try{
-        const result = await database.createUsernamedB(req, res)
+        const result = await databaseUsername.createUsername(req, res)
         res.send("Success!")
     }catch(err){
         res.status(500).send("Something went wrong.")

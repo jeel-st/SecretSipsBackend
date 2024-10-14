@@ -1,10 +1,6 @@
 const { MongoClient } = require("mongodb")
-const databaseUsername = require("./databaseUsername");
 const { get } = require("../routes/usernameRouter");
 
-async function createUsernamedB(req, res) {
-    await databaseUsername.createUsername(req, res)
-}
 
 let db = null;
 const url = `mongodb://localhost:27017/`;
