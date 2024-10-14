@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb")
 const { get } = require("../routes/usernameRouter");
-
+const databaseUsername = require("./databaseUsername")
 
 let db = null;
 const url = `mongodb://localhost:27017/`;
@@ -14,6 +14,9 @@ async function connectToDB() {
     });
 }
 
+async function createUserdb(req, res) {
+    await databaseUsername.createUsername(req, res)
+}
 
 function getDB(){
     if (!db) {
@@ -25,5 +28,6 @@ function getDB(){
 
 Object.assign(exports, {
     connectToDB,
-    getDB
+    getDB,
+    createUserdb
 })
