@@ -5,7 +5,7 @@ async function createUsername(req, res) {
     const { username } = req.body
     console.log("Username: "+ username)
     try {
-        const result = await database.createUsername(req, res)
+        const result = await database.createUserdb(req, res)
         if (result == "Username is required") {
             res.status(400).send("Username is required")
         } else if (result == "User already exists") {
