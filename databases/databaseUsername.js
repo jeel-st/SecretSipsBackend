@@ -37,9 +37,9 @@ async function addPoint(username) {
     const update = await usersCollection.updateOne({ name: username }, { $set: { points: points } })
 
     if (update.updatedCount === 0) {
-        return "There was nothing updated";
+        return false;
     }else {
-        return "added the Point"
+        return true;
     }
 
     } catch (err) {
