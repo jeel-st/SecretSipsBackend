@@ -18,6 +18,10 @@ async function createUserdb(req, res) {
     await databaseUsername.createUsername(req, res)
 }
 
+async function checkUserExists(username){
+    const response = await db.collection("users").findOne({username})
+}
+
 function getDB(){
     if (!db) {
         throw new Error("Database not initialized. Call connectToDB first.");
