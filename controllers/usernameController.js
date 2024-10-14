@@ -1,4 +1,4 @@
-const database = require("../databases/databaseUsername")
+const database = require("../databases/databaseMain")
 const missionLogic = require("../utils/missionLogic")
 
 async function createUsername(req, res) {
