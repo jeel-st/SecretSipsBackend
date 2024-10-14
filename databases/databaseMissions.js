@@ -2,7 +2,7 @@ const { get } = require("../routes/usernameRouter");
 const database = require("./databaseMain")
 
 async function getAllMissions() {
-    const allMissions = await database.getDB().collection("missions").find()
+    const allMissions = await database.getDB().collection("missions").find({}).toArray()
             if (allMissions.length === 0) {
                 throw new Error("Keine Missionen gefunden.");
             }
