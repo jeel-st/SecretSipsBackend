@@ -20,9 +20,9 @@ async function createUsername(req, res) {
                     await missionLogic.distributeMission(username, false)
                 }
             }catch(err){
-                res.send(500).send("Error while trying to distribute a mission to the player.")
+                console.log(err)
+                throw new Error("Mission distribution went wrong")
             }
-            
             res.send("Success!")
         }
     } catch (err) {
