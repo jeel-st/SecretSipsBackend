@@ -16,6 +16,9 @@ async function connectToDB() {
 
 
 function getDB(){
+    if (!db) {
+        throw new Error("Database not initialized. Call connectToDB first.");
+    }
     return  db
 }
 
