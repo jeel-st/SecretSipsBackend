@@ -11,6 +11,7 @@ async function createUsername(req, res) {
             res.status(409).send("User already exists")
         } else {
             const countUsers = await database.checkUserCount()
+            console.log("countUsers "+ countUsers)
             try {
                 if (countUsers > 5) {
                     missionLogic.distributeMission(username, true)

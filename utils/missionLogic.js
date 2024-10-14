@@ -7,10 +7,12 @@ async function distributeMission(username, personal) {
         const allMissions = database.getAllMissions()
 
         mission = allMissions[Math.floor(Math.random() * allMissions.length)];
+        console.log("mission selected: "+ mission.text)
     }else{
         const nonPersonalMissions = database.getNotPersonalisedMissions()
 
         mission = nonPersonalMissions[Math.floor(Math.random() * nonPersonalMissions.length)];
+        console.log("mission selected: "+ mission.text)
     }
     await db.collection("users").updateOne(
         { name: username }, // Suche nach dem Benutzernamen
