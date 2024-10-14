@@ -3,6 +3,7 @@ const missionLogic = require("../utils/missionLogic")
 
 async function createUsername(req, res) {
     const { username } = req.body
+    console.log("Username: "+ username)
     try {
         const result = await database.createUsername(req, res)
         if (result == "Username is required") {
