@@ -30,22 +30,39 @@ async function addPoint(username) {
     try {
     const usersCollection = (await database.initializeCollections()).users;
     const user = await usersCollection.findOne({ name: username })
-
     const points = user.points + 1
     console.log(`${username} got now ${points} points.`)
     const update = await usersCollection.updateOne({ name: username }, { $set: { points: points } })
 
     if (update.updatedCount === 0) {
-        return "There was nothing updated";
+        return false;
     }else {
-        return "added the Point"
+        return true;
     }
 
     } catch (err) {
         throw err;
     }
 }
+
+async function getPoints(username) {
+    try {
+        const usersCollection = (await database.initializeCollections()).users;
+        const user = await usersCollection.findOne({ name: username })
+        console.log(user)
+        if (user != null) {
+            console.log(user)
+            return user.points
+        }else {
+            return false;
+        }
+    }catch (err) {
+        throw err
+    }
+}
+
 module.exports = {
     createUsername,
-    addPoint
+    addPoint,
+    getPoints
 }

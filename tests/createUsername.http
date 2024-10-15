@@ -6,7 +6,24 @@ POST {{host}}/register/createUser HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "Larry"
+    "username": "deine Mum"
 }
 
 ###
+
+PUT {{host}}/register/addPoint HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "deine Mum"
+}
+
+###
+
+
+GET {{host}}/register/getPoints HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "deine Mum"
+}
