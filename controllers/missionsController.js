@@ -9,7 +9,8 @@ async function missionPassed(req, res){
         if(!user){
             return res.status(404).send("User not found")
         }
-
+        console.log("Username:"+ user.name)
+        console.log("Active mission:"+ user.missionActive)
         const activeMissionId = user.missionActive
         if(!activeMissionId){
             return res.status(400).send("No active mission found")
