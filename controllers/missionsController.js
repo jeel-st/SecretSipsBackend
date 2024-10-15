@@ -19,7 +19,8 @@ async function missionPassed(req, res){
         const updateUser = await database.updatedUser(username, activeMissionId)
         const allMissions = await database.getAllMissions()
         console.log("All missions: "+ allMissions)
-        console.log("UpdatedUser: "+ updateUser)
+        console.log("UpdatedUser name: "+ updateUser.name)
+        console.log("UpdatedUser Missions: "+ updateUser.missionPassed)
         const passedMissions = updateUser.missionPassed
         console.log("Passed Missions: "+ passedMissions)
         const availableMissions = allMissions.filter(
