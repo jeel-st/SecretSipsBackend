@@ -27,7 +27,7 @@ async function updatedUser(username, missionId) {
         },
         { returnOriginal: false }
     );
-    return "Success!"
+    return updateUser
 }
 
 async function updateMission(username, missionId) {
