@@ -49,7 +49,8 @@ async function getPoints(username) {
     try {
         const usersCollection = (await database.initializeCollections()).users;
         const user = await usersCollection.findOne({ name: username })
-        if (user.points !== null) {
+        if (user != null) {
+            console.log(user)
             return user.points
         }else {
             return false;
