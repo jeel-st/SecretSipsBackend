@@ -18,7 +18,20 @@ async function getNotPersonalisedMissions() {
     return nonPersonalMissions
 }
 
+async function updatedUser(username, missionId) {
+    const updateUser = await database.getDB().collection("users").findOneAndUpdate(
+        { name: username },
+        {
+            $push: { missionPassed: missionId },
+            $set: { missionActive: null } 
+        },
+        { returnOriginal: false }
+    );
+    return "Success!"
+}
+
 module.exports ={
     getAllMissions,
-    getNotPersonalisedMissions
+    getNotPersonalisedMissions,
+    updatedUser
 }

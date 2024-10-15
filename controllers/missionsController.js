@@ -4,7 +4,7 @@ async function missionPassed(req, res){
     const {username} = req.body
     try{
         
-        const user = await database.getDB().collection("users").findOne({name: username})
+        const user = await database.getUser(username)
 
         if(!user){
             return res.status(404).send("User not found")
@@ -15,7 +15,7 @@ async function missionPassed(req, res){
             return res.status(400).send("No active mission found")
         }
 
-        
+
 
     }catch(err){
 
