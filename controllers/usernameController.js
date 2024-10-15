@@ -52,7 +52,7 @@ async function getPoints(req, res) {
         const result = await database.getPoints(username)
 
         if (result != false) {
-            res.send(result)
+            res.json(result)
         }else {
             res.status(504).json("No Points found for that user! Or the user doesn't exist!")
         }
