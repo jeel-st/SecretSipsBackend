@@ -30,8 +30,17 @@ async function updatedUser(username, missionId) {
     return "Success!"
 }
 
+async function updateMission(username, missionId) {
+    const response = await database.collection("users").updateOne(
+        { name: username },
+        { $set: { missionActive: missionId } }
+    );
+    return "Success"
+}
+
 module.exports ={
     getAllMissions,
     getNotPersonalisedMissions,
-    updatedUser
+    updatedUser,
+    updateMission
 }

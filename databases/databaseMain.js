@@ -40,6 +40,13 @@ async function getPoints(username) {
     return await databaseUsername.getPoints(username);
 }
 
+async function updatedUser(username, missionId) {
+    return await databaseMissions.updatedUser(username, missionId)
+}
+
+async function updateMission(username, missionId) {
+    return await databaseMissions.updateMission(username, missionId)
+}
 
 async function checkUserCount() {
     try {
@@ -92,5 +99,7 @@ Object.assign(exports, {
     getNotPersonalisedMissions,
     addPoint,
     getPoints,
-    initializeCollections
+    initializeCollections,
+    updatedUser,
+    updateMission
 })
