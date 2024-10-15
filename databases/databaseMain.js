@@ -36,6 +36,10 @@ async function addPoint(username) {
     return await databaseUsername.addPoint(username);
 }
 
+async function getPoints(username) {
+    return await databaseUsername.getPoints(username);
+}
+
 
 async function checkUserCount() {
     try {
@@ -87,5 +91,6 @@ Object.assign(exports, {
     getAllMissions,
     getNotPersonalisedMissions,
     addPoint,
+    getPoints,
     initializeCollections
 })

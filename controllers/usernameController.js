@@ -46,7 +46,23 @@ async function addPoint(req, res) {
     }
 }
 
+async function getPoints(req, res) {
+    try {
+        const username = req.body
+        const result = await database.getPoints(username)
+
+        if (result != false) {
+            res.send(result)
+        }else {
+            res.status(504).json("No Points found for that user! Or the user doesn't exist!")
+        }
+    }catch (err) {
+        res.status(500).json("Something went wrong here: " + err)
+    }
+}
+
 module.exports = {
     createUsername,
-    addPoint
+    addPoint,
+    getPoints
 }
