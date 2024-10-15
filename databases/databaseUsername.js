@@ -48,7 +48,6 @@ async function addPoint(username) {
 async function getPoints(username) {
     try {
         const usersCollection = (await database.initializeCollections()).users;
-        console.log(usersCollection)
         const user = await usersCollection.findOne({ name: username })
         console.log(user)
         if (user != null) {

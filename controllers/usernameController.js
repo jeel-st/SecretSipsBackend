@@ -48,7 +48,7 @@ async function addPoint(req, res) {
 
 async function getPoints(req, res) {
     try {
-        const username = req.body
+        const { username } = req.body
         const result = await database.getPoints(username)
 
         if (result != false) {
