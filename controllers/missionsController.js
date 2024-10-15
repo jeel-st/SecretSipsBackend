@@ -19,7 +19,7 @@ async function missionPassed(req, res){
         const updateUser = await database.updatedUser(username, activeMissionId)
         const allMissions = await database.getAllMissions()
         const passedMissions = await updateUser.value.missionPassed || []
-
+        console.log("All missions: "+ allMissions)
         const availableMissions = allMissions.filter(
             mission => !passedMissions.includes(mission.id)
         )
@@ -29,6 +29,7 @@ async function missionPassed(req, res){
         }
 
         const newMission = availableMissions[Math.floor(Math.random() * availableMissions.length)];
+        console.log("newMission"+ newMission)
         const response = await database.updateMission(username, newMission.id)
         res.send("Success")
     }catch(err){
