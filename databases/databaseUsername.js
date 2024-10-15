@@ -61,5 +61,6 @@ async function getPoints(username) {
 
 module.exports = {
     createUsername,
-    addPoint
+    addPoint,
+    getPoints
 }
