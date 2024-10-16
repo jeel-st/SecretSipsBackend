@@ -20,13 +20,12 @@ async function missionPassed(req, res){
         const failedMissions = updateUser.failedMissions || []
         console.log(`passedMissions: ${passedMissions}`)
         console.log(`failedMissions: ${failedMissions}`)
-        const availableMissions = []
-
-        allMissions.forEach(mission => {
-            if (!failedMissions.includes(mission) && !passedMissions.includes(mission)) {
-              availableMissions.push(mission);
-            }
-          });
+        const availableMissions = allMissions.filter(mission =>{
+            !failedMissions.includes(mission)
+        })
+        availableMissions = allMissions.filter(mission =>{
+            !passedMissions.includes(mission)
+        })
         console.log(`availableMissions: ${availableMissions}`)
         if(availableMissions.length === 0){
             return res.status(400).json({ message: "No new missions available" });
@@ -62,13 +61,12 @@ async function missionFailed(req, res){
 
         const passedMissions = updateUser.missionPassed || []
         const failedMissions = updateUser.missionFailed || []
-        const availableMissions = []
-
-        allMissions.forEach(mission => {
-            if (!failedMissions.includes(mission) && !passedMissions.includes(mission)) {
-              availableMissions.push(mission);
-            }
-          });
+        const availableMissions = allMissions.filter(mission =>{
+            !failedMissions.includes(mission)
+        })
+        availableMissions = allMissions.filter(mission =>{
+            !passedMissions.includes(mission)
+        })
 
         if(availableMissions.length === 0){
             return res.status(400).json({ message: "No new missions available" });
