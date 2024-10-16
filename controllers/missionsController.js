@@ -31,7 +31,9 @@ async function missionPassed(req, res){
         availableMissions = allMissions.filter(mission =>{
             return !passedMissions.includes(mission.id)
         })
-        console.log(`availableMissions: ${availableMissions.id}`)
+        availableMissions.forEach(mission => {
+            console.log("Available Mission: "+ mission.id)
+        });
         if(availableMissions.length === 0){
             return res.status(400).json({ message: "No new missions available" });
 
