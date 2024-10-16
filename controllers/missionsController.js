@@ -16,24 +16,18 @@ async function missionPassed(req, res){
 
         const updateUser = await database.updatedUser(username, activeMissionId)
         let allMissions = await database.getAllMissions()
-        console.log(`updateUser Points: ${updateUser.points}`)
-        console.log(`updateUser Name: ${updateUser.name}`)
-        console.log(`updateUser failedMissions: ${updateUser.missionFailed}`)
-
+ 
 
         let passedMissions = updateUser.missionPassed || []
         let failedMissions = updateUser.missionFailed || []
-        console.log(`passedMissions: ${passedMissions}`)
-        console.log(`failedMissions: ${failedMissions}`)
+
         let availableMissions = allMissions.filter(mission =>{
             return !failedMissions.includes(mission.id)
         })
         availableMissions = availableMissions.filter(mission =>{
             return !passedMissions.includes(mission.id)
         })
-        availableMissions.forEach(mission => {
-            console.log("Available Mission: "+ mission.id)
-        });
+      
         if(availableMissions.length === 0){
             return res.status(400).json({ message: "No new missions available" });
 
