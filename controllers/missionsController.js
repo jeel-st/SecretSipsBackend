@@ -9,8 +9,6 @@ async function missionPassed(req, res){
         if(!user){
             return res.status(404).send("User not found")
         }
-        console.log("Username:"+ user.name)
-        console.log("Active mission:"+ user.missionActive)
         const activeMissionId = user.missionActive
         if(!activeMissionId){
             return res.status(400).send("No active mission found")
@@ -18,11 +16,7 @@ async function missionPassed(req, res){
 
         const updateUser = await database.updatedUser(username, activeMissionId)
         const allMissions = await database.getAllMissions()
-        console.log(`All missions: ${allMissions}`)
-        console.log(`UpdatedUser name: ${updateUser.name}`)
-        console.log("UpdatedUser Missions: "+ updateUser.missionPassed)
         const passedMissions = updateUser.missionPassed
-        console.log(`Passed Missions:  ${passedMissions}`)
         const availableMissions = allMissions.filter(
             mission => !passedMissions.includes(mission.id)
         )
@@ -32,9 +26,7 @@ async function missionPassed(req, res){
         }
 
         const newMission = availableMissions[Math.floor(Math.random() * availableMissions.length)];
-        console.log(`newMission has id: ${newMission.id}`)
         const response = await database.updateMission(username, newMission.id)
-        console.log("response: "+ response)
         res.send(newMission.text)
     }catch(err){
         res.status(500).send("Internal Server Error")
@@ -71,9 +63,9 @@ async function missionFailed(req, res){
 
         const newMission = availableMissions[Math.floor(Math.random() * availableMissions.length)];
         const response = await database.updateMission(username, newMission.id)
-        res.send("Success")
+        res.send(newMission.text)
     }catch(err){
-
+        res.status(500).send("Internal Server Error")
     }
 }
 module.exports = {
