@@ -13,7 +13,7 @@ async function createUsername(req, res) {
             const user = await database.getUser(username)
             const missionId = user.missionActive
             mission = await database.getMissionById(missionId)
-            res.status(409).send(mission.text)
+            res.status(209).send(mission.text)
         } else {
             console.log("Result from usertest: "+ result)
             const countUsers = await database.checkUserCount()
