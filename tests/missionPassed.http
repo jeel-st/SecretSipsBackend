@@ -6,7 +6,7 @@ PUT {{host}}/missions/missionPassed HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "Larss"
+    "username": "Moin"
 }
 
 ###
@@ -15,5 +15,6 @@ PUT {{host}}/missions/missionFailed HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "Marcus"
+    "username": "Moin"
 }
+
