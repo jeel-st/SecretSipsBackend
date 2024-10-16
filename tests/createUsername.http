@@ -6,7 +6,7 @@ POST {{host}}/register/createUser HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "Larry"
+    "username": "lol"
 }
 
 ###

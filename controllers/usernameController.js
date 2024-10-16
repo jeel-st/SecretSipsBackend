@@ -28,6 +28,7 @@ async function createUsername(req, res) {
             try{
                 const user = database.getUser(username)
                 const missionId = user.missionActive
+                console.log("MissionID"+ missionId)
                 mission = database.getMissionById(missionId)
             }catch(err){
                 throw new Error("User wasn't found."+ err)
