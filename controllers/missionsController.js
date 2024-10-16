@@ -32,7 +32,7 @@ async function missionPassed(req, res){
         }
 
         const newMission = availableMissions[Math.floor(Math.random() * availableMissions.length)];
-        console.log("newMission"+ newMission)
+        console.log(`newMission ${newMission}`)
         const response = await database.updateMission(username, newMission.id)
         res.send("Success")
     }catch(err){
