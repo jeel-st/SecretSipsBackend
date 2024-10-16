@@ -18,7 +18,7 @@ async function missionPassed(req, res){
         let allMissions = await database.getAllMissions()
         console.log("FailedMissions: "+ updateUser.failedMissions)
         let passedMissions = updateUser.missionPassed || []
-        let failedMissions = updateUser.value.failedMissions || []
+        let failedMissions = updateUser.failedMissions || []
         console.log(`passedMissions: ${passedMissions}`)
         console.log(`failedMissions: ${failedMissions}`)
         let availableMissions = allMissions.filter(mission =>{
