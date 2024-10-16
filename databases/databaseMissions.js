@@ -38,7 +38,7 @@ async function userFailedMission(username, missionId) {
             $push: { missionFailed: missionId },
             $set: { missionActive: null } 
         },
-        { returnOriginal: false }
+        { returnDocument: "after" }
     );
     return updateUser
 }
