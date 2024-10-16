@@ -57,12 +57,12 @@ async function missionFailed(req, res){
         }
 
         const updateUser = await database.userFailedMission(username, activeMissionId)
-        console.log(updateUser.id)
+        console.log(`userid: ${updateUser.name}`)
         const allMissions = await database.getAllMissions()
-        const passedMissions = await updateUser.value.missionPassed || []
-
+       
+        const failedMissions = updateUser.missionFailed
         const availableMissions = allMissions.filter(
-            mission => !passedMissions.includes(mission.id)
+            mission => !failedMissions.includes(mission.id)
         )
         if(availableMissions.length === 0){
             return res.status(400).json({ message: "No new missions available" });
