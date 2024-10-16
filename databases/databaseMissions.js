@@ -44,6 +44,7 @@ async function userFailedMission(username, missionId) {
 }
 
 async function updateMission(username, missionId) {
+    console.log("Went into databaseMission")
     const response = await database.collection("users").updateOne(
         { name: username },
         { $set: { missionActive: missionId } }

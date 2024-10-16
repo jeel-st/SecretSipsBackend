@@ -49,6 +49,7 @@ async function userFailedMission(username, missionId) {
 }
 
 async function updateMission(username, missionId) {
+    console.log("Went into databaseMain")
     return await databaseMissions.updateMission(username, missionId)
 }
 
