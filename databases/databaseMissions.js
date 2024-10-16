@@ -26,7 +26,7 @@ async function updatedUser(username, missionId) {
             $push: { missionPassed: missionId },
             $set: { missionActive: null } 
         },
-        { returnOriginal: false }
+        { returnDocument: "after" }
     );
     return updateUser
 }
