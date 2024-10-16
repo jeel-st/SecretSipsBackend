@@ -16,10 +16,11 @@ async function missionPassed(req, res){
 
         const updateUser = await database.updatedUser(username, activeMissionId)
         const allMissions = await database.getAllMissions()
-        const passedMissions = updateUser.missionPassed
+        const passedMissions = updateUser.missionPassed || []
+        const failedMissions = updateUser.failedMissions || []
         const availableMissions = allMissions.filter(
-            mission => !passedMissions.includes(mission.id)
-        )
+            mission => !passedMissions.includes(mission.id) && !failedMissions.includes(mission.id)
+        );
         if(availableMissions.length === 0){
             return res.status(400).json({ message: "No new missions available" });
 
@@ -51,11 +52,13 @@ async function missionFailed(req, res){
         const updateUser = await database.userFailedMission(username, activeMissionId)
         console.log(`userid: ${updateUser.name}`)
         const allMissions = await database.getAllMissions()
-       
-        const failedMissions = updateUser.missionFailed
+
+        const passedMissions = updateUser.missionPassed || []
+        const failedMissions = updateUser.missionFailed || []
         const availableMissions = allMissions.filter(
-            mission => !failedMissions.includes(mission.id)
-        )
+            mission => !passedMissions.includes(mission.id) && !failedMissions.includes(mission.id)
+        );
+        
         if(availableMissions.length === 0){
             return res.status(400).json({ message: "No new missions available" });
 
