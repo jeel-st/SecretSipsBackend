@@ -15,12 +15,12 @@ async function missionPassed(req, res){
         }
 
         const updateUser = await database.updatedUser(username, activeMissionId)
-        const allMissions = await database.getAllMissions()
-        const passedMissions = updateUser.missionPassed || []
-        const failedMissions = updateUser.failedMissions || []
+        let allMissions = await database.getAllMissions()
+        let passedMissions = updateUser.missionPassed || []
+        let failedMissions = updateUser.failedMissions || []
         console.log(`passedMissions: ${passedMissions}`)
         console.log(`failedMissions: ${failedMissions}`)
-        const availableMissions = allMissions.filter(mission =>{
+        let availableMissions = allMissions.filter(mission =>{
             !failedMissions.includes(mission)
         })
         availableMissions = allMissions.filter(mission =>{
@@ -57,11 +57,11 @@ async function missionFailed(req, res){
 
         const updateUser = await database.userFailedMission(username, activeMissionId)
         console.log(`userid: ${updateUser.name}`)
-        const allMissions = await database.getAllMissions()
+        let allMissions = await database.getAllMissions()
 
-        const passedMissions = updateUser.missionPassed || []
-        const failedMissions = updateUser.missionFailed || []
-        const availableMissions = allMissions.filter(mission =>{
+        let passedMissions = updateUser.missionPassed || []
+        let failedMissions = updateUser.missionFailed || []
+        let availableMissions = allMissions.filter(mission =>{
             return !failedMissions.includes(mission)
         })
         availableMissions = availableMissions.filter(mission =>{
