@@ -77,7 +77,7 @@ async function missionFailed(req, res){
         const response = await database.updateMission(username, newMission.id)
         res.send(newMission.text)
     }catch(err){
-        res.status(500).send("Internal Server Error")
+        res.status(500).send("Internal Server Error"+ err)
     }
 }
 module.exports = {
