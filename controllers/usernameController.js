@@ -5,11 +5,15 @@ async function createUsername(req, res) {
     const { username } = req.body
     console.log("Username: "+ username)
     try {
+        let mission
         const result = await database.createUserdb(req, res)
         if (result == "Username is required") {
             res.status(400).send("Username is required")
         } else if (result == "User already exists") {
-            res.status(409).send("User already exists")
+            const user = await database.getUser(username)
+            const missionId = user.missionActive
+            mission = await database.getMissionById(missionId)
+            res.status(409).send(mission.text)
         } else {
             console.log("Result from usertest: "+ result)
             const countUsers = await database.checkUserCount()
@@ -24,13 +28,10 @@ async function createUsername(req, res) {
                 console.log(err)
                 throw new Error("Mission distribution went wrong")
             }
-            let mission
+            
             try{
                 const user = await database.getUser(username)
-                console.log("User "+ user)
-                console.log("User MissionID: "+ user.missionActive)
                 const missionId = user.missionActive
-                console.log("MissionID"+ missionId)
                 mission = await database.getMissionById(missionId)
             }catch(err){
                 throw new Error("User wasn't found."+ err)

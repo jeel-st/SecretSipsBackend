@@ -76,7 +76,6 @@ async function getUser(username) {
 }
 
 async function getMissionById(missionId) {
-    console.log("Datentyp der Variable missionID: " + typeof missionId)
     const mission = await db.collection("missions").findOne({id: missionId})
     if(!mission){
         throw new Error("Mission nicht gefunden")
