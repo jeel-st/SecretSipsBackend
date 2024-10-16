@@ -35,9 +35,9 @@ async function missionPassed(req, res){
         console.log(`newMission has id: ${newMission.id}`)
         const response = await database.updateMission(username, newMission.id)
         console.log("response: "+ response)
-        res.send("Success")
+        res.send(newMission.text)
     }catch(err){
-
+        res.status(500).send("Internal Server Error")
     }
 }
 
