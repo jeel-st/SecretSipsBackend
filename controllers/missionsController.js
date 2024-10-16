@@ -62,10 +62,10 @@ async function missionFailed(req, res){
         const passedMissions = updateUser.missionPassed || []
         const failedMissions = updateUser.missionFailed || []
         const availableMissions = allMissions.filter(mission =>{
-            !failedMissions.includes(mission)
+            return !failedMissions.includes(mission)
         })
-        availableMissions = allMissions.filter(mission =>{
-            !passedMissions.includes(mission)
+        availableMissions = availableMissions.filter(mission =>{
+            return !passedMissions.includes(mission)
         })
 
         if(availableMissions.length === 0){
