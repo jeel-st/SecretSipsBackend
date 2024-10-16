@@ -18,11 +18,11 @@ async function missionPassed(req, res){
         let allMissions = await database.getAllMissions()
         console.log(`updateUser Points: ${updateUser.points}`)
         console.log(`updateUser Name: ${updateUser.name}`)
-        console.log(`updateUser failedMissions: ${updateUser.failedMissions}`)
+        console.log(`updateUser failedMissions: ${updateUser.missionFailed}`)
 
 
         let passedMissions = updateUser.missionPassed || []
-        let failedMissions = updateUser.failedMissions || []
+        let failedMissions = updateUser.missionFailed || []
         console.log(`passedMissions: ${passedMissions}`)
         console.log(`failedMissions: ${failedMissions}`)
         let availableMissions = allMissions.filter(mission =>{
