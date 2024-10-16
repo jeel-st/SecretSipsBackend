@@ -57,6 +57,7 @@ async function missionFailed(req, res){
         }
 
         const updateUser = await database.userFailedMission(username, activeMissionId)
+        console.log(updateUser.id)
         const allMissions = await database.getAllMissions()
         const passedMissions = await updateUser.value.missionPassed || []
 
