@@ -24,10 +24,20 @@ async function createUsername(req, res) {
                 console.log(err)
                 throw new Error("Mission distribution went wrong")
             }
-            res.send("Success!")
+            let mission
+            try{
+                const user = database.getUser(username)
+                const missionId = user.missionActive
+                mission = database.getMissionById(missionId)
+            }catch(err){
+                throw new Error("User wasn't found."+ err)
+            }
+            missionText = mission.text
+            res.send(missionText)
+
         }
     } catch (err) {
-        res.status(500).send("Something went wrong.")
+        res.status(500).send("Something went wrong. "+ err)
     }
 }
 

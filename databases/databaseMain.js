@@ -75,6 +75,15 @@ async function getUser(username) {
     return user
 }
 
+async function getMissionById(missionId) {
+    const mission = await db.collection("missions").findOne({id: missionId})
+    if(!mission){
+        throw new Error("Mission nicht gefunden")
+        
+    }
+    return mission
+}
+
 async function initializeCollections() {
     const missions = db.collection("missions");
     const users = db.collection("users");
@@ -107,5 +116,6 @@ Object.assign(exports, {
     initializeCollections,
     updatedUser,
     updateMission,
-    userFailedMission
+    userFailedMission,
+    getMissionById
 })
