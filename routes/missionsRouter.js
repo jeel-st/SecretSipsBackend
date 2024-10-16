@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const missionController = require("../controllers/missionsController")
+const logMiddleware = require("./logMiddleware");
+
 
 router.use(logMiddleware);
 
