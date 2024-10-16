@@ -32,15 +32,15 @@ async function updatedUser(username, missionId) {
 }
 
 async function userFailedMission(username, missionId) {
-    const updateUser = await database.getDB().collection("users").findOneAndUpdate(
+    const user = await database.getDB().collection("users").findOneAndUpdate(
         { name: username },
         {
             $push: { missionFailed: missionId },
             $set: { missionActive: null } 
         },
-        { returnOriginal: false }
+        { returnDocument: "after" }
     );
-    return updateUser
+    return user
 }
 
 async function updateMission(username, missionId) {
