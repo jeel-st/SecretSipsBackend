@@ -48,6 +48,8 @@ async function updateMission(username, missionId) {
         { name: username },
         { $set: { missionActive: missionId } }
     );
+    console.log("update Mission response:")
+    console.log(response)
     return "Success"
 }
 
