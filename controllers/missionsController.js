@@ -31,7 +31,7 @@ async function missionPassed(req, res){
     }catch(err){
         res.status(500).send("Internal Server Error")
     }
-}
+}   
 
 async function missionFailed(req, res){
     const {username} = req.body
