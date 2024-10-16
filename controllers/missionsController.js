@@ -21,10 +21,10 @@ async function missionPassed(req, res){
         console.log(`passedMissions: ${passedMissions}`)
         console.log(`failedMissions: ${failedMissions}`)
         let availableMissions = allMissions.filter(mission =>{
-            !failedMissions.includes(mission.id)
+            return !failedMissions.includes(mission.id)
         })
         availableMissions = allMissions.filter(mission =>{
-            !passedMissions.includes(mission.id)
+            return !passedMissions.includes(mission.id)
         })
         console.log(`availableMissions: ${availableMissions}`)
         if(availableMissions.length === 0){
