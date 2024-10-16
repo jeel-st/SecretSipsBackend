@@ -44,6 +44,10 @@ async function updatedUser(username, missionId) {
     return await databaseMissions.updatedUser(username, missionId)
 }
 
+async function userFailedMission(username, missionId) {
+    return await databaseMissions.userFailedMission(username, missionId)
+}
+
 async function updateMission(username, missionId) {
     return await databaseMissions.updateMission(username, missionId)
 }
@@ -101,5 +105,6 @@ Object.assign(exports, {
     getPoints,
     initializeCollections,
     updatedUser,
-    updateMission
+    updateMission,
+    userFailedMission
 })
