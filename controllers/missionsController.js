@@ -28,7 +28,7 @@ async function missionPassed(req, res){
         let availableMissions = allMissions.filter(mission =>{
             return !failedMissions.includes(mission.id)
         })
-        availableMissions = allMissions.filter(mission =>{
+        availableMissions = availableMissions.filter(mission =>{
             return !passedMissions.includes(mission.id)
         })
         availableMissions.forEach(mission => {
