@@ -26,7 +26,7 @@ async function distributeMission(username, personal) {
     }
     await database.getDB().collection("users").updateOne(
         { name: username }, // Suche nach dem Benutzernamen
-        { $set: { missionActive: mission.id } }
+        { $set: { missionActive: mission.text } }
     );
     console.log(`Mission "${mission.text}" (ID: ${mission.id}) wurde dem Benutzer "${username}" zugewiesen.`);
 }

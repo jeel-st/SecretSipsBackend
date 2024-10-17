@@ -1,7 +1,8 @@
 const { MongoClient } = require("mongodb")
 const { get } = require("../routes/usernameRouter");
 const databaseUsername = require("./databaseUsername")
-const databaseMissions = require("./databaseMissions")
+const databaseMissions = require("./databaseMissions");
+const { text } = require("express");
 
 let db = null;
 const url = `mongodb://localhost:27017/`;
@@ -79,8 +80,8 @@ async function getUser(username) {
     return user
 }
 
-async function getMissionById(missionId) {
-    const mission = await db.collection("missions").findOne({id: missionId})
+async function getMissionById(missionText) {
+    const mission = await db.collection("missions").findOne({text: missionText})
     if(!mission){
         throw new Error("Mission nicht gefunden")
         

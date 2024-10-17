@@ -9,12 +9,12 @@ async function missionPassed(req, res){
         if(!user){
             return res.status(404).send("User not found")
         }
-        const activeMissionId = user.missionActive
-        if(!activeMissionId){
+        const activeMissionName = user.missionActive
+        if(!activeMissionName){
             return res.status(400).send("No active mission found")
         }
 
-        const updateUser = await database.updatedUser(username, activeMissionId)
+        const updateUser = await database.updatedUser(username, activeMissionName)
         let allMissions = await database.getAllMissions()
  
 
@@ -22,10 +22,10 @@ async function missionPassed(req, res){
         let failedMissions = updateUser.missionFailed || []
 
         let availableMissions = allMissions.filter(mission =>{
-            return !failedMissions.includes(mission.id)
+            return !failedMissions.includes(mission.text)
         })
         availableMissions = availableMissions.filter(mission =>{
-            return !passedMissions.includes(mission.id)
+            return !passedMissions.includes(mission.text)
         })
       
         if(availableMissions.length === 0){
@@ -43,7 +43,7 @@ async function missionPassed(req, res){
             
         }
 
-        const response = await database.updateMission(username, newMission.id)
+        const response = await database.updateMission(username, newMission.text)
         res.send(newMission.text)
     }catch(err){
         res.status(500).send("Internal Server Error")
@@ -60,22 +60,22 @@ async function missionFailed(req, res){
             return res.status(404).send("User not found")
         }
 
-        const activeMissionId = user.missionActive
-        if(!activeMissionId){
+        const activeMissionText = user.missionActive
+        if(!activeMissionText){
             return res.status(400).send("No active mission found")
         }
-
-        const updateUser = await database.userFailedMission(username, activeMissionId)
+        
+        const updateUser = await database.userFailedMission(username, activeMissionText)
         console.log(`userid: ${updateUser.name}`)
         let allMissions = await database.getAllMissions()
 
         let passedMissions = updateUser.missionPassed || []
         let failedMissions = updateUser.missionFailed || []
         let availableMissions = allMissions.filter(mission =>{
-            return !failedMissions.includes(mission.id)
+            return !failedMissions.includes(mission.text)
         })
         availableMissions = availableMissions.filter(mission =>{
-            return !passedMissions.includes(mission.id)
+            return !passedMissions.includes(mission.text)
         })
 
         if(availableMissions.length === 0){
@@ -93,7 +93,7 @@ async function missionFailed(req, res){
             
         }
 
-        const response = await database.updateMission(username, newMission.id)
+        const response = await database.updateMission(username, newMission.text)
         res.send(newMission.text)
     }catch(err){
         console.log("Error: "+ err)
