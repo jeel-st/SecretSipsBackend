@@ -41,7 +41,7 @@ async function missionPassed(req, res){
 
             const filteredUsers = allUsers.filter(user => user.name !== username)
 
-            if(otherUsers.length ===0){
+            if(filteredUsers.length ===0){
             
                 console.log("No other users available" )
                 return
@@ -105,7 +105,7 @@ async function missionFailed(req, res){
 
             const filteredUsers = allUsers.filter(user => user.name !== username)
 
-            if(otherUsers.length ===0){
+            if(filteredUsers.length ===0){
             
                 console.log("No other users available" )
                 return

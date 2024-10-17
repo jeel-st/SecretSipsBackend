@@ -11,6 +11,11 @@ async function distributeMission(username, personal) {
         if (mission.text.includes("%")) {
             const allUsers = await database.getAllUsers()
             const filteredUsers = allUsers.filter(user => user.name !== username)
+            if(filteredUsers.length ===0){
+            
+                console.log("No other users available" )
+                return
+            }
             const randomUser = filteredUsers[Math.floor(Math.random()* filteredUsers.length)]
 
 
