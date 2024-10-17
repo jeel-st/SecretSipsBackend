@@ -34,6 +34,15 @@ async function missionPassed(req, res){
         }
 
         const newMission = availableMissions[Math.floor(Math.random() * availableMissions.length)];
+
+        if(newMission.text.includes("%")){
+            const allUsers = await database.getAllUsers()
+            const randomUser = allUsers[Math.floor(Math.random()* allUsers.length)]
+            newMission.text = newMission.text.replace("%", randomUser.name)
+            console.log("Personalized mission text: "+ newMission.text)
+            
+        }
+
         const response = await database.updateMission(username, newMission.id)
         res.send(newMission.text)
     }catch(err){
@@ -75,6 +84,15 @@ async function missionFailed(req, res){
         }
 
         const newMission = availableMissions[Math.floor(Math.random() * availableMissions.length)];
+
+        if(newMission.text.includes("%")){
+            const allUsers = await database.getAllUsers()
+            const randomUser = allUsers[Math.floor(Math.random()* allUsers.length)]
+            newMission.text = newMission.text.replace("%", randomUser.name)
+            console.log("Personalized mission text: "+ newMission.text)
+            
+        }
+
         const response = await database.updateMission(username, newMission.id)
         res.send(newMission.text)
     }catch(err){

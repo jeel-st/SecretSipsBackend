@@ -61,8 +61,26 @@ async function getPoints(username) {
     }
 }
 
+
+async function getAllUsers() {
+    try{
+            const allUsers = (await database.initializeCollections()).users.find({}).toArray()
+            if(allUsers.length === 0){
+                throw new Error("No users found")
+            }
+
+            return allUsers
+            
+    }catch(err){
+        console.log("Error in databaseUsername/getAllUsers: "+ err)
+        throw new Error("No users found")
+    }
+}
+
+
 module.exports = {
     createUsername,
     addPoint,
-    getPoints
+    getPoints,
+    getAllUsers
 }

@@ -53,6 +53,10 @@ async function updateMission(username, missionId) {
     return await databaseMissions.updateMission(username, missionId)
 }
 
+async function getAllUsers() {
+    return await databaseUsername.getAllUsers()
+}
+
 async function checkUserCount() {
     try {
         console.log("Went into checkusercount")
@@ -117,5 +121,6 @@ Object.assign(exports, {
     updatedUser,
     updateMission,
     userFailedMission,
-    getMissionById
+    getMissionById,
+    getAllUsers
 })

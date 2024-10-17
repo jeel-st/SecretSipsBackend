@@ -75,6 +75,7 @@ async function getPoints(req, res) {
     }
 }
 
+
 module.exports = {
     createUsername,
     addPoint,
