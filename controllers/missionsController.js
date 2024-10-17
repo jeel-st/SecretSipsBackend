@@ -36,9 +36,23 @@ async function missionPassed(req, res){
         const newMission = availableMissions[Math.floor(Math.random() * availableMissions.length)];
 
         if(newMission.text.includes("%")){
+
             const allUsers = await database.getAllUsers()
-            const randomUser = allUsers[Math.floor(Math.random()* allUsers.length)]
+
+            const filteredUsers = allUsers.filter(user => user.name !== username)
+
+            if(otherUsers.length ===0){
+            
+                console.log("No other users available" )
+                return
+            }
+
+
+
+            const randomUser = filteredUsers[Math.floor(Math.random()* filteredUsers.length)]
+
             newMission.text = newMission.text.replace("%", randomUser.name)
+
             console.log("Personalized mission text: "+ newMission.text)
             
         }
@@ -64,7 +78,7 @@ async function missionFailed(req, res){
         if(!activeMissionText){
             return res.status(400).send("No active mission found")
         }
-        
+
         const updateUser = await database.userFailedMission(username, activeMissionText)
         console.log(`userid: ${updateUser.name}`)
         let allMissions = await database.getAllMissions()
@@ -86,9 +100,23 @@ async function missionFailed(req, res){
         const newMission = availableMissions[Math.floor(Math.random() * availableMissions.length)];
 
         if(newMission.text.includes("%")){
+
             const allUsers = await database.getAllUsers()
-            const randomUser = allUsers[Math.floor(Math.random()* allUsers.length)]
+
+            const filteredUsers = allUsers.filter(user => user.name !== username)
+
+            if(otherUsers.length ===0){
+            
+                console.log("No other users available" )
+                return
+            }
+
+
+
+            const randomUser = filteredUsers[Math.floor(Math.random()* filteredUsers.length)]
+
             newMission.text = newMission.text.replace("%", randomUser.name)
+
             console.log("Personalized mission text: "+ newMission.text)
             
         }

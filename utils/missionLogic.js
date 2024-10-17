@@ -10,10 +10,14 @@ async function distributeMission(username, personal) {
         console.log("mission selected: " + mission.text)
         if (mission.text.includes("%")) {
             const allUsers = await database.getAllUsers()
+            const filteredUsers = allUsers.filter(user => user.name !== username)
+            const randomUser = filteredUsers[Math.floor(Math.random()* filteredUsers.length)]
 
-            const randomUser = allUsers[Math.floor(Math.random()* allUsers.length)]
+
             console.log("Random user selected: "+ randomUser.name)
+
             mission.text = mission.text.replace("%", randomUser.name)
+
             console.log("Personalized mission text: "+ mission.text)
         }
     } else {
