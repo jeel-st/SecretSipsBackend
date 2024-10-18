@@ -130,7 +130,7 @@ async function missionFailed(req, res){
 }
 
 async function getMissionTimestamp(req, res) {
-    const { username } = req.params
+    const { username } = req.body
     try {
         console.log(`username: ${username}`)
         const result = await database.getMissionTimestamp(req);
