@@ -15,8 +15,16 @@ async function missionPassed(req, res){
         }
 
         const updateUser = await database.updatedUser(username, activeMissionArray)
-        let allMissions = await database.getAllMissions()
- 
+
+
+        const countUsers = await database.checkUserCount()
+        let allMissions = []
+        if(countUsers < 5){
+            allMissions = await database.getNotPersonalisedMissions()
+        }else{
+            allMissions = await database.getAllMissions()
+
+        }
 
         let passedMissions = updateUser.missionPassed || []
         let failedMissions = updateUser.missionFailed || []
@@ -84,7 +92,17 @@ async function missionFailed(req, res){
 
         const updateUser = await database.userFailedMission(username, activeMissionArray)
         console.log(`userid: ${updateUser.name}`)
-        let allMissions = await database.getAllMissions()
+
+        const countUsers = await database.checkUserCount();
+        let allMissions = [];
+
+        // Weniger als 5 Benutzer -> Nur nicht-personalisierte Missionen
+        if (countUsers <= 5) {
+            allMissions = await database.getNotPersonalisedMissions();
+        } else {
+            // Mehr als 5 Benutzer -> Alle Missionen
+            allMissions = await database.getAllMissions();
+        }
 
         let passedMissions = updateUser.missionPassed || []
         let failedMissions = updateUser.missionFailed || []
