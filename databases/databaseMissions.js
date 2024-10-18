@@ -57,10 +57,8 @@ async function updateMission(username, newMission) {
 
 async function getMissionTimestamp(username) {
     const usersCollection = (await database.initializeCollections()).users;
-    console.log(usersCollection)
 
     const user = await usersCollection.findOne({ name: username })
-        
     console.log(user)
     if (user) {
         return user.missionTimestamp
