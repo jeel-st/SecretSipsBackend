@@ -33,9 +33,10 @@ async function distributeMission(username, personal) {
         mission = nonPersonalMissions[Math.floor(Math.random() * nonPersonalMissions.length)];
         console.log("mission selected: " + mission.text)
     }
+    const currentDate = new Date();
     await database.getDB().collection("users").updateOne(
         { name: username }, // Suche nach dem Benutzernamen
-        { $set: { missionActive: mission.text } }
+        { $set: { missionActive: mission.text, missionTimestamp: currentDate } }
     );
     console.log(`Mission "${mission.text}" (ID: ${mission.id}) wurde dem Benutzer "${username}" zugewiesen.`);
 }
