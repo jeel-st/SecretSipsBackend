@@ -8,6 +8,6 @@ router.use(logMiddleware);
 
 router.put("/missionPassed", missionController.missionPassed)
 router.put("/missionFailed", missionController.missionFailed)
-router.get("/missionTimestamp", missionController.getMissionTimestamp)
+router.get("/getMissionTimestamp", missionController.getMissionTimestamp)
 
 module.exports = router

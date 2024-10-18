@@ -59,7 +59,7 @@ async function getAllUsers() {
 }
 
 async function getMissionTimestamp(username) {
-    return await databaseUsername.getMissionTimestamp(username)
+    return await databaseMissions.getMissionTimestamp(username)
 }
 
 async function checkUserCount() {
