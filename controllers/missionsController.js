@@ -128,7 +128,24 @@ async function missionFailed(req, res){
         res.status(500).send("Internal Server Error"+ err)
     }
 }
+
+async function getMissionTimestamp(req, res) {
+    const { username } = req.params
+    try {
+        const result = database.getMissionTimestamp(req);
+        if (result) {
+            res.json(result)
+        }else {
+            res.status(500).json("internal server error")
+        }
+    }catch (err) {
+        throw  err
+    }
+
+}
+
 module.exports = {
     missionPassed,
-    missionFailed
+    missionFailed,
+    getMissionTimestamp
 }

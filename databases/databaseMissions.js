@@ -55,10 +55,23 @@ async function updateMission(username, missionText) {
     return "Success"
 }
 
+async function getMissionTimestamp(username) {
+    const usersCollection = (await database.initializeCollections()).usersCollection
+
+    const result = usersCollection.findOne({name: username})
+    if (result) {
+        return result.missionTimestamp
+    }else {
+        return false;
+    }
+
+}
+
 module.exports ={
     getAllMissions,
     getNotPersonalisedMissions,
     updatedUser,
     userFailedMission,
-    updateMission
+    updateMission,
+    getMissionTimestamp
 }
