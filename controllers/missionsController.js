@@ -10,7 +10,7 @@ async function missionPassed(req, res){
             return res.status(404).send("User not found")
         }
         const activeMissionArray = user.missionActive
-        if(!activeMissionName){
+        if(!activeMissionArray){
             return res.status(400).send("No active mission found")
         }
 
@@ -75,7 +75,7 @@ async function missionFailed(req, res){
         }
 
         const activeMissionArray = user.missionActive
-        if(!activeMissionText){
+        if(!activeMissionArray){
             return res.status(400).send("No active mission found")
         }
 
