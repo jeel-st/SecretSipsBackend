@@ -48,7 +48,7 @@ async function updateMission(username, newMission) {
     const currentDate = new Date()
     const response = await database.getDB().collection("users").updateOne(
         { name: username },
-        { $set: { missionActive: newMission, activeMissionTimestamp: currentDate } }
+        { $set: { missionActive: newMission, missionTimestamp: currentDate } }
     );
     console.log("update Mission response:")
     console.log(response)
