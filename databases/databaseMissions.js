@@ -45,9 +45,10 @@ async function userFailedMission(username, missionText) {
 
 async function updateMission(username, missionText) {
     console.log("Went into databaseMission")
+    const currentDate = new Date()
     const response = await database.getDB().collection("users").updateOne(
         { name: username },
-        { $set: { missionActive: missionText } }
+        { $set: { missionActive: missionText, activeMissionTimestamp: currentDate } }
     );
     console.log("update Mission response:")
     console.log(response)
