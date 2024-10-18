@@ -25,5 +25,5 @@ GET {{host}}/register/getPoints HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "deine Mum"
+    "username": "Moritz"
 }
