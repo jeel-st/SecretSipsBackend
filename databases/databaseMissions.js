@@ -19,11 +19,11 @@ async function getNotPersonalisedMissions() {
     return nonPersonalMissions
 }
 
-async function updatedUser(username, missionText) {
+async function updatedUser(username, activeMissionArray) {
     const updateUser = await database.getDB().collection("users").findOneAndUpdate(
         { name: username },
         {
-            $push: { missionPassed: missionText },
+            $push: { missionPassed: activeMissionArray },
             $set: { missionActive: null } 
         },
         { returnDocument: "after" }
@@ -31,11 +31,11 @@ async function updatedUser(username, missionText) {
     return updateUser
 }
 
-async function userFailedMission(username, missionText) {
+async function userFailedMission(username, newMission) {
     const user = await database.getDB().collection("users").findOneAndUpdate(
         { name: username },
         {
-            $push: { missionFailed: missionText },
+            $push: { missionFailed: newMission },
             $set: { missionActive: null } 
         },
         { returnDocument: "after" }
@@ -43,12 +43,12 @@ async function userFailedMission(username, missionText) {
     return user
 }
 
-async function updateMission(username, missionText) {
+async function updateMission(username, newMission) {
     console.log("Went into databaseMission")
     const currentDate = new Date()
     const response = await database.getDB().collection("users").updateOne(
         { name: username },
-        { $set: { missionActive: missionText, activeMissionTimestamp: currentDate } }
+        { $set: { missionActive: newMission, activeMissionTimestamp: currentDate } }
     );
     console.log("update Mission response:")
     console.log(response)

@@ -30,7 +30,7 @@ async function createUsername(req, res) {
             
             try{
                 const user = await database.getUser(username)
-                mission = user.missionActive
+                mission = user.missionActive[0]
             }catch(err){
                 throw new Error("User wasn't found."+ err)
             }

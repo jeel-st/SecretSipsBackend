@@ -1,7 +1,6 @@
 const database = require("../databases/databaseMain")
 
 async function distributeMission(username, personal) {
-    const user = await database.getUser(username)
     let mission
     if (personal == true) {
         const allMissions = await database.getAllMissions()
@@ -36,7 +35,7 @@ async function distributeMission(username, personal) {
     const currentDate = new Date();
     await database.getDB().collection("users").updateOne(
         { name: username }, // Suche nach dem Benutzernamen
-        { $set: { missionActive: mission.text, missionTimestamp: currentDate } }
+        { $set: { missionActive: [mission.text, mission.id], missionTimestamp: currentDate } }
     );
     console.log(`Mission "${mission.text}" (ID: ${mission.id}) wurde dem Benutzer "${username}" zugewiesen.`);
 }
