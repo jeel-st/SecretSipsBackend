@@ -21,11 +21,14 @@ async function missionPassed(req, res){
         let passedMissions = updateUser.missionPassed || []
         let failedMissions = updateUser.missionFailed || []
 
+        let passedMissionIDs = passedMissions.map(mission => mission[1])
+        let failedMissionIDs = failedMissions.map(mission => mission[1])
+
         let availableMissions = allMissions.filter(mission =>{
-            return !failedMissions.includes(mission.id)
+            return !failedMissionIDs.includes(mission.id)
         })
         availableMissions = availableMissions.filter(mission =>{
-            return !passedMissions.includes(mission.id)
+            return !passedMissionIDs.includes(mission.id)
         })
       
         if(availableMissions.length === 0){
@@ -85,11 +88,15 @@ async function missionFailed(req, res){
 
         let passedMissions = updateUser.missionPassed || []
         let failedMissions = updateUser.missionFailed || []
+
+        let passedMissionIDs = passedMissions.map(mission => mission[1])
+        let failedMissionIDs = failedMissions.map(mission => mission[1])
+
         let availableMissions = allMissions.filter(mission =>{
-            return !failedMissions.includes(mission.id)
+            return !failedMissionIDs.includes(mission.id)
         })
         availableMissions = availableMissions.filter(mission =>{
-            return !passedMissions.includes(mission.id)
+            return !passedMissionIDs.includes(mission.id)
         })
 
         if(availableMissions.length === 0){
