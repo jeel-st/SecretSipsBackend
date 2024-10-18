@@ -156,11 +156,10 @@ async function missionFailed(req, res){
 }
 
 async function getMissionTimestamp(req, res) {
-    const { username } = req.body
+    const { username } = req.params
     try {
         console.log(`username: ${username}`)
         const result = await database.getMissionTimestamp(username);
-        console.log(result)
         if (result) {
             res.json(result)
         }else {
