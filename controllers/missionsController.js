@@ -56,8 +56,8 @@ async function missionPassed(req, res){
             console.log("Personalized mission text: "+ newMission.text)
             
         }
-
-        const response = await database.updateMission(username, newMission)
+        databaseArray = [newMission.text, newMission.id]
+        const response = await database.updateMission(username, databaseArray)
         res.send(newMission.text)
     }catch(err){
         res.status(500).send("Internal Server Error")
@@ -120,8 +120,9 @@ async function missionFailed(req, res){
             console.log("Personalized mission text: "+ newMission.text)
             
         }
+        databaseArray = [newMission.text, newMission.id]
 
-        const response = await database.updateMission(username, newMission)
+        const response = await database.updateMission(username, databaseArray)
         res.send(newMission.text)
     }catch(err){
         console.log("Error: "+ err)
