@@ -29,5 +29,5 @@ Content-Type: application/json
 
 ###
 
-GET {{host}}/missions/getMissionHistory/kok
+GET {{host}}/missions/missionHistory/kok
 
