@@ -172,6 +172,7 @@ async function getMissionTimestamp(req, res) {
 }
 
 async function getMissionHistory(req, res) {
+    console.log("getMissionHistory")
     const { username } = req.params
     try {
         console.log(`username: ${username}`)
