@@ -68,6 +68,11 @@ async function getAllUsersForScoreboard() {
                     name: user.name,
                     count: count
                 })
+            }else {
+                scoreBoard.push({
+                    name: user.name,
+                    count: 0
+                })
             }
             
         });
