@@ -74,7 +74,7 @@ async function getPoints(req, res) {
 
 async function getAllUsers(req, res) {
     try {
-        const result = await database.getAllUsers()
+        const result = await database.getAllUsersForScoreboard()
 
         if (result != false) {
             res.json(result)
