@@ -171,8 +171,24 @@ async function getMissionTimestamp(req, res) {
 
 }
 
+async function getMissionHistory(req, res) {
+    const { username } = req.params
+    try {
+        console.log(`username: ${username}`)
+        const result = await database.getMissionHistory(username);
+        if (result) {
+            res.json(result)
+        }else {
+            res.status(500).json("internal server error")
+        }
+    }catch (err) {
+        throw  err
+    }
+}
+
 module.exports = {
     missionPassed,
     missionFailed,
-    getMissionTimestamp
+    getMissionTimestamp,
+    getMissionHistory
 }

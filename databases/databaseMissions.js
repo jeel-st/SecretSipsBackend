@@ -65,7 +65,18 @@ async function getMissionTimestamp(username) {
     }else {
         return false;
     }
+}
 
+async function getMissionHistory(username) {
+    const usersCollection = (await database.initializeCollections()).users;
+
+    const user = await usersCollection.findOne({ name: username })
+    console.log(user)
+    if (user) {
+        return { missionsPassed: user.missionPassed, missionsFailed: user.missionFailed }
+    }else {
+        return false;
+    }
 }
 
 module.exports ={
