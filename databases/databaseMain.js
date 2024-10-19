@@ -77,6 +77,8 @@ async function getAllUsersForScoreboard() {
             
         });
     }
+    scoreBoard.sort((a, b) => b.count - a.count); 
+
     return scoreBoard;
     
 }
