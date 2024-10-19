@@ -54,6 +54,27 @@ async function updateMission(username, missionId) {
     return await databaseMissions.updateMission(username, missionId)
 }
 
+async function getAllUsersForScoreboard() {
+    const users = await getAllUsers()
+    const scoreBoard = []
+    if (users !== null) {
+        users.forEach(user => {
+            if (user.missionPassed) {
+                let count = 0;
+                user.missionPassed.forEach(mission => {
+                    count++;
+                })
+            }
+            scoreBoard.push({
+                name: user.name,
+                count: count
+            })
+        });
+    }
+    return scoreBoard;
+    
+}
+
 async function getAllUsers() {
     return await databaseUsername.getAllUsers()
 }
@@ -133,5 +154,6 @@ Object.assign(exports, {
     getMissionById,
     getAllUsers,
     getMissionTimestamp,
-    getMissionHistory
+    getMissionHistory,
+    getAllUsersForScoreboard
 })

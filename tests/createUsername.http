@@ -27,3 +27,7 @@ Content-Type: application/json
 {
     "username": "Moritz"
 }
+
+###
+
+GET  {{host}}/register/allUsers HTTP/1.1
