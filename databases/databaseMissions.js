@@ -70,6 +70,7 @@ async function getMissionTimestamp(username) {
 async function getMissionHistory(username) {
     const usersCollection = (await database.initializeCollections()).users;
 
+    console.log(username)
     const user = await usersCollection.findOne({ name: username })
     console.log(user)
     if (user) {
