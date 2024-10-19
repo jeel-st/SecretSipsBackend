@@ -64,11 +64,12 @@ async function getAllUsersForScoreboard() {
                 user.missionPassed.forEach(mission => {
                     count++;
                 })
+                scoreBoard.push({
+                    name: user.name,
+                    count: count
+                })
             }
-            scoreBoard.push({
-                name: user.name,
-                count: count
-            })
+            
         });
     }
     return scoreBoard;
