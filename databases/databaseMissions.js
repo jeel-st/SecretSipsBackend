@@ -85,5 +85,6 @@ module.exports ={
     updatedUser,
     userFailedMission,
     updateMission,
-    getMissionTimestamp
+    getMissionTimestamp,
+    getMissionHistory
 }
