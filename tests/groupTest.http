@@ -17,5 +17,5 @@ Content-Type: application/json
 
 {
     "username": "Lorenz",
-    "groupName": "6716999bf74e5c36ee05d43d"
+    "groupId": "6716999bf74e5c36ee05d43d"
 }

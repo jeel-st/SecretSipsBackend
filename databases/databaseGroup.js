@@ -30,8 +30,14 @@ async function addGroupToUser(username, groupId) {
 
     //Check if group exists
     const groupCollection = (await database.initializeCollections()).groups
+    
     const group = await groupCollection.findOne({_id: new ObjectId(groupId)})
-    console.log(group)
+    if (group == null) {
+        return "group not found"
+    }
+    
+
+
     return ("worked")
 
 }
