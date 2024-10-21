@@ -24,8 +24,8 @@ async function addGrouptoUser(req, res) {
 
         const result = await database.addGroupToUser(username, groupId)
 
-        if (result == "Debug") {
-            res.status(504).json("Debug")
+        if (result == "group not found") {
+            res.status(504).json("group not found")
         }else {
             res.json("Added group to User succesfully")
         }
