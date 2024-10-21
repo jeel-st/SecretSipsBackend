@@ -1,5 +1,6 @@
 const { addGrouptoUser } = require("../controllers/groupController")
 const database = require("./databaseMain")
+const { ObjectId } = require('mongodb');
 
 async function createGroup(username, groupName){
     console.log("Creating group ", groupName, "...")
