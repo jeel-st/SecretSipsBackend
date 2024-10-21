@@ -3,7 +3,7 @@ const database = require("./databaseMain")
 async function createUsername(req, res){
 
     const {username} = req.body
-    console.log("username"+ username)
+    console.log("username "+ username)
     if(!username){
         return "Username is required"
     }
