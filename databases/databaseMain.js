@@ -1,7 +1,8 @@
 const { MongoClient } = require("mongodb")
 const { get } = require("../routes/usernameRouter");
-const databaseUsername = require("./databaseUsername")
+const databaseUsername = require("./databaseUsername");
 const databaseMissions = require("./databaseMissions");
+const databaseGroup = require("./databaseGroup");
 const { text } = require("express");
 
 let db = null;
@@ -129,11 +130,17 @@ async function getMissionById(missionText) {
 async function initializeCollections() {
     const missions = db.collection("missions");
     const users = db.collection("users");
+    const groups = db.collection("groups");
 
     return {
         missions: missions,
-        users: users
+        users: users,
+        groups: groups
     };
+}
+
+async function createGroup(username, groupName) {
+    return await databaseGroup.createGroup(username, groupName)
 }
 
 function getDB(){
@@ -163,5 +170,6 @@ Object.assign(exports, {
     getAllUsers,
     getMissionTimestamp,
     getMissionHistory,
-    getAllUsersForScoreboard
+    getAllUsersForScoreboard,
+    createGroup
 })
