@@ -4,6 +4,7 @@ async function createGroup(username, groupName){
     console.log("Creating group ", groupName, "...")
 
     const groupCollection = (await database.initializeCollections()).groups
+    const usersCollection = (await database.initializeCollections()).users
 
     const resultGroup = await groupCollection.insertOne({name: groupName})
     if (resultGroup.insertedCount == 0) {
@@ -11,7 +12,7 @@ async function createGroup(username, groupName){
         return "Could't add group."
     }
 
-    const resultUser = await groupCollection.updateOne({name: username}, { $push: { groupId: resultGroup.insertedId } })
+    const resultUser = await usersCollection.updateOne({name: username}, { $push: { groupId: resultGroup.insertedId } })
     console.log("result from user request: ", resultUser)
     if (resultUser.modifiedCount == 0) {
         console.log("Couldn't update user")
