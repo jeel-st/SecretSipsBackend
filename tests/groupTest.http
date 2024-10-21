@@ -9,3 +9,13 @@ Content-Type: application/json
     "username": "Lorenz",
     "groupName": "Buesnauer Ultras"
 }
+
+###
+
+PUT {{host}}/groups/createGroup HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Lorenz",
+    "groupName": "6716999bf74e5c36ee05d43d"
+}

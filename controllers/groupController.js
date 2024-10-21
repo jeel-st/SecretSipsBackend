@@ -18,6 +18,23 @@ async function createGroup(req, res) {
     }
 }
 
+async function addGrouptoUser(req, res) {
+    try {
+        const { username, groupId } = req.body;
+
+        const result = await database.addGrouptoUser(username, groupId)
+
+        if (result == "Debug") {
+            res.status(504).json("Debug")
+        }else {
+            resizeTo.json("Added group to User succesfully")
+        }
+    }catch (err) {
+        res.status(500).json("Something went wrong! " + err)
+    }
+}
+
 module.exports =  {
-    createGroup
+    createGroup,
+    addGrouptoUser
 }

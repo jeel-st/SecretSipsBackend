@@ -96,6 +96,10 @@ async function getMissionHistory(username) {
     return await databaseMissions.getMissionHistory(username)
 }
 
+async function addGroupToUser(username, groupId) {
+    return await databaseGroup.addGroupToUser(username, groupId)
+}
+
 async function checkUserCount() {
     try {
         console.log("Went into checkusercount")
@@ -171,5 +175,6 @@ Object.assign(exports, {
     getMissionTimestamp,
     getMissionHistory,
     getAllUsersForScoreboard,
-    createGroup
+    createGroup,
+    addGroupToUser
 })

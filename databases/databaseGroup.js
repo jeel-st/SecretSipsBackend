@@ -1,4 +1,6 @@
+const { addGrouptoUser } = require("../controllers/groupController")
 const database = require("./databaseMain")
+cosnt 
 
 async function createGroup(username, groupName){
     console.log("Creating group ", groupName, "...")
@@ -23,6 +25,18 @@ async function createGroup(username, groupName){
 
 }
 
+async function addGroupToUser(username, groupId) {
+    console.log("adding group: ", groupId, " to user: ", username)
+
+    //Check if group exists
+    const groupCollection = (await database.initializeCollections()).groups
+    const group = await groupCollection.findOne({_id: ObjectId(groupId)})
+    console.log(group)
+    return ("worked")
+
+}
+
 module.exports = {
-    createGroup
+    createGroup,
+    addGroupToUser
 }
