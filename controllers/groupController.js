@@ -8,7 +8,7 @@ async function createGroup(req, res) {
 
         if (result == "Couldn't add Group") {
             res.status(504).json("Couldn't add Group")
-        }else if("Couldn't update user"){
+        }else if(result == "Couldn't update user"){
             res.status(504).json("Couldn't update user")
         }else [
             res.json(result)
