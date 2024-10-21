@@ -6,11 +6,13 @@ async function createGroup(req, res) {
         const { username, groupName } = req.body
         const result = await database.createGroup(username, groupName) 
 
-        if (result == true) {
-            res.json("Croup addded succesfully")
-        }else {
-            res.status(504).json("Internal servor error")
-        }
+        if (result == "Couldn't add Group") {
+            res.status(504).json("Couldn't add Group")
+        }else if("Couldn't update user"){
+            res.status(504).json("Couldn't update user")
+        }else [
+            res.json(result)
+        ]
     }catch (err) {
         res.status(500).json("Something went wrong! " + err)
     }
