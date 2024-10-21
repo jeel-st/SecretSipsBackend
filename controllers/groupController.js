@@ -22,7 +22,7 @@ async function addGrouptoUser(req, res) {
     try {
         const { username, groupId } = req.body;
 
-        const result = await database.addGrouptoUser(username, groupId)
+        const result = await database.addGroupToUser(username, groupId)
 
         if (result == "Debug") {
             res.status(504).json("Debug")
