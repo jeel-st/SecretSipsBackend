@@ -27,7 +27,7 @@ async function addGrouptoUser(req, res) {
         if (result == "Debug") {
             res.status(504).json("Debug")
         }else {
-            resizeTo.json("Added group to User succesfully")
+            res.json("Added group to User succesfully")
         }
     }catch (err) {
         res.status(500).json("Something went wrong! " + err)
