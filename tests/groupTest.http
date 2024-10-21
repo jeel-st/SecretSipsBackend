@@ -1,0 +1,11 @@
+@host = http://85.215.71.124
+
+###
+
+POST {{host}}/groups/createGroup HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Lorenz",
+    "groupName": "Buesnauer Ultras"
+}

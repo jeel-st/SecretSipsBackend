@@ -11,7 +11,7 @@ async function createGroup(username, groupName){
         return "Could't add group."
     }
 
-    const resultUser = groupCollection.updateOne({name: username}, {groupId: resultGroup.insertedId})
+    const resultUser = groupCollection.updateOne({name: username}, {$SET: {groupId: resultGroup.insertedId}})
     if (resultUser.updatedCount == 0) {
         console.log("Couldn't update user")
         return "couldn't find user";
