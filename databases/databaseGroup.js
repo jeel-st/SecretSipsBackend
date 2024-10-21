@@ -1,7 +1,7 @@
 const database = require("./databaseMain")
 
 async function createGroup(username, groupName){
-    console.log("Creating group...")
+    console.log("Creating group ", groupName, "...")
 
     const groupCollection = database.initializeCollections().groups
 

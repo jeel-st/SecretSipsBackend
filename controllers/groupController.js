@@ -3,7 +3,6 @@ const missionLogic = require("../utils/missionLogic")
 
 async function createGroup(req, res) {
     try {
-        console.log(req.body)
         const { username, groupName } = req.body
         const result = await database.createGroup(username, groupName) 
 
