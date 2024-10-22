@@ -1,5 +1,5 @@
 const { missionFailed } = require("../controllers/missionsController");
-const { get } = require("../routes/usernameRouter");
+const { get } = require("../routes/userRouter");
 const database = require("./databaseMain")
 
 async function getAllMissions() {

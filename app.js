@@ -10,11 +10,11 @@ const { connectToDB } = require("./databases/databaseMain")
 connectToDB()
 
 
-const registerRouter = require("./routes/usernameRouter")
+const userRouter = require("./routes/userRouter")
 const missionRouter = require("./routes/missionsRouter")
 const groupRouter = require("./routes/groupRouter")
 
-app.use("/register", registerRouter)
+app.use("/user", userRouter)
 app.use("/missions", missionRouter)
 app.use("/groups", groupRouter)
 app.use("/static", express.static(__dirname + '/static'))

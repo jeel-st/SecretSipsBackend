@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const logMiddleware = require("./logMiddleware");
-const usernameController = require("../controllers/usernameController")
+const usernameController = require("../controllers/userController")
 
 router.use(logMiddleware);
 
