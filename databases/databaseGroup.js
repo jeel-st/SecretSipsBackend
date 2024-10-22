@@ -37,10 +37,15 @@ async function addGroupToUser(username, groupId) {
         return "group not found"
     }
 
+    // add group to user
+    const usersCollection = (await database.initializeCollections()).users
+    const user = await usersCollection.updateOne({name: username}, { $push: { groupIds: groupId } })
 
+    if (user.modifiedCount == 0) {
+        return "group couldn't be added to user"
+    }
 
     return ("worked")
-
 }
 
 module.exports = {
