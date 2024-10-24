@@ -85,7 +85,7 @@ async function getAllUsers() {
  * @return: String -> "Success!" bei erfolgreicher Registrierung, oder ein Fehlerstring bei Problemen
  */
 
-export async function postRegisteredUser(req){
+async function postRegisteredUser(req){
     const { username, password, email, firstName, lastName} = req.body
     const friends = []
     const timestamp = Date.now()
@@ -200,5 +200,6 @@ module.exports = {
     postOneTimeUser,
     addPoint,
     getPoints,
-    getAllUsers
+    getAllUsers,
+    postRegisteredUser
 }

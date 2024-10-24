@@ -1,7 +1,7 @@
 const database = require("../databases/databaseMain")
 const missionLogic = require("../utils/missionLogic")
 
-export async function createUsername(req, res) {
+async function createUsername(req, res) {
     const { username } = req.body
     console.log("Username: "+ username)
     try {
@@ -51,7 +51,7 @@ export async function createUsername(req, res) {
  * @throws: Error -> schwerwiegender Fehler
  */
 
-export async function postRegister(req, res) {
+async function postRegister(req, res) {
     
     const pushingUser = await database.registerUser(req)
     if(pushingUser == "Success!"){
@@ -69,7 +69,7 @@ export async function postRegister(req, res) {
     }
 }
 
-export async function addPoint(req, res) {
+async function addPoint(req, res) {
     try {
         const { username } = req.body
         const result = await database.addPoint(username) 
@@ -84,7 +84,7 @@ export async function addPoint(req, res) {
     }
 }
 
-export async function getPoints(req, res) {
+async function getPoints(req, res) {
     try {
         const { username } = req.body
         const result = await database.getPoints(username)
@@ -99,7 +99,7 @@ export async function getPoints(req, res) {
     }
 }
 
-export async function getAllUsers(req, res) {
+async function getAllUsers(req, res) {
     try {
         const result = await database.getAllUsersForScoreboard()
 
@@ -111,4 +111,12 @@ export async function getAllUsers(req, res) {
     }catch (err) {
         res.status(500).json("Something went wrong here: " + err)
     }
+}
+
+module.exports = {
+    getAllUsers,
+    getPoints,
+    addPoint,
+    postRegister,
+    createUsername
 }
