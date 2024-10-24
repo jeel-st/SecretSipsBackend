@@ -11,6 +11,19 @@ Content-Type: application/json
 
 ###
 
+POST {{host}}/register/registerUser HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Joel",
+    "password": "JoelStink*100",
+    "email": "joel@starkov.com",
+    "firstName": "Joel",
+    "lastName": "Starkov"
+}
+
+###
+
 PUT {{host}}/register/addPoint HTTP/1.1
 Content-Type: application/json
 

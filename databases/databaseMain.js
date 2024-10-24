@@ -7,7 +7,7 @@ const { text } = require("express");
 
 let db = null;
 const url = `mongodb://localhost:27017/`;
-async function connectToDB() {
+export async function connectToDB() {
     await MongoClient.connect(url
     ).then((connection) => {
         db = connection.db('secretSips');
@@ -17,45 +17,49 @@ async function connectToDB() {
     });
 }
 
-async function createUserdb(req, res) {
-    return await databaseUsername.createUsername(req, res)
+export async function createUserdb(req, res) {
+    return await databaseUsername.postOneTimeUser(req, res)
 }
 
-async function checkUserExists(username){
+export async function registerUser(req) {
+    return await databaseUsername.postRegisteredUser(req)
+}
+
+export async function checkUserExists(username){
     const response = await db.collection("users").findOne({name: username})
     return response !== null; // Gibt true zurück, wenn der Benutzer existiert
 }
 
-async function getAllMissions() {
+export async function getAllMissions() {
     return await databaseMissions.getAllMissions()
 }
 
-async function getNotPersonalisedMissions() {
+export async function getNotPersonalisedMissions() {
     return await databaseMissions.getNotPersonalisedMissions()
 }
 
-async function addPoint(username) {
+export async function addPoint(username) {
     return await databaseUsername.addPoint(username);
 }
 
-async function getPoints(username) {
+export async function getPoints(username) {
     return await databaseUsername.getPoints(username);
 }
 
-async function updatedUser(username, missionId) {
+export async function updatedUser(username, missionId) {
     return await databaseMissions.updatedUser(username, missionId)
 }
 
-async function userFailedMission(username, missionId) {
+export async function userFailedMission(username, missionId) {
     return await databaseMissions.userFailedMission(username, missionId)
 }
 
-async function updateMission(username, missionId) {
+export async function updateMission(username, missionId) {
     console.log("Went into databaseMain")
     return await databaseMissions.updateMission(username, missionId)
 }
 
-async function getAllUsersForScoreboard() {
+export async function getAllUsersForScoreboard() {
     const users = await getAllUsers()
     const scoreBoard = []
     if (users !== null) {
@@ -84,23 +88,19 @@ async function getAllUsersForScoreboard() {
     
 }
 
-async function getAllUsers() {
-    return await databaseUsername.getAllUsers()
-}
-
-async function getMissionTimestamp(username) {
+export async function getMissionTimestamp(username) {
     return await databaseMissions.getMissionTimestamp(username)
 }
 
-async function getMissionHistory(username) {
+export async function getMissionHistory(username) {
     return await databaseMissions.getMissionHistory(username)
 }
 
-async function addGroupToUser(username, groupId) {
+export async function addGroupToUser(username, groupId) {
     return await databaseGroup.addGroupToUser(username, groupId)
 }
 
-async function checkUserCount() {
+export async function checkUserCount() {
     try {
         console.log("Went into checkusercount")
         const count = await db.collection("users").countDocuments();
@@ -114,7 +114,7 @@ async function checkUserCount() {
     }
 }
 
-async function getUser(username) {
+export async function getUser(username) {
     const user = await db.collection("users").findOne({ name: username });
         if (!user) {
             throw new Error(`Benutzer mit dem Namen ${username} nicht gefunden.`);
@@ -122,7 +122,7 @@ async function getUser(username) {
     return user
 }
 
-async function getMissionById(missionText) {
+export async function getMissionById(missionText) {
     const mission = await db.collection("missions").findOne({text: missionText})
     if(!mission){
         throw new Error("Mission nicht gefunden")
@@ -131,50 +131,31 @@ async function getMissionById(missionText) {
     return mission
 }
 
-async function initializeCollections() {
+export async function initializeCollections() {
     const missions = db.collection("missions");
     const users = db.collection("users");
     const groups = db.collection("groups");
+    const oneTimeUsers = db.collection("oneTimeUsers");
 
     return {
         missions: missions,
         users: users,
-        groups: groups
+        groups: groups,
+        oneTimeUsers: oneTimeUsers
     };
 }
 
-async function createGroup(username, groupName) {
+export async function createGroup(username, groupName) {
     return await databaseGroup.createGroup(username, groupName)
 }
 
-function getDB(){
+export function getDB(){
     if (!db) {
         throw new Error("Database not initialized. Call connectToDB first.");
     }
     return  db
 }
 
-
-Object.assign(exports, {
-    connectToDB,
-    getDB,
-    createUserdb,
-    checkUserExists,
-    checkUserCount,
-    getUser,
-    getAllMissions,
-    getNotPersonalisedMissions,
-    addPoint,
-    getPoints,
-    initializeCollections,
-    updatedUser,
-    updateMission,
-    userFailedMission,
-    getMissionById,
-    getAllUsers,
-    getMissionTimestamp,
-    getMissionHistory,
-    getAllUsersForScoreboard,
-    createGroup,
-    addGroupToUser
-})
+export async function getAllUsers() {
+    return await databaseUsername.getAllUsers()
+}

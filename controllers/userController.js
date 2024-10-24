@@ -1,7 +1,7 @@
 const database = require("../databases/databaseMain")
 const missionLogic = require("../utils/missionLogic")
 
-async function createUsername(req, res) {
+export async function createUsername(req, res) {
     const { username } = req.body
     console.log("Username: "+ username)
     try {
@@ -42,7 +42,34 @@ async function createUsername(req, res) {
     }
 }
 
-async function addPoint(req, res) {
+/**
+ * Diese Methode verarbeitet die Registrierung eines neuen Benutzers.
+ * 
+ * @param req: Object -> Die Anfrage
+ * @param res: Object -> Die Antwort
+ * @return: String -> Erfolgsmeldung oder entsprechende Fehlermeldungen mit Statuscode
+ * @throws: Error -> schwerwiegender Fehler
+ */
+
+export async function postRegister(req, res) {
+    
+    const pushingUser = await database.registerUser(req)
+    if(pushingUser == "Success!"){
+        res.json(pushingUser)
+    }else if(pushingUser == "Duplicate username") {
+        res.status(452).json(pushingUser)
+    }else if (pushingUser == "Duplicate Email"){
+        res.status(453).json(pushingUser)
+    }else if (pushingUser == "Email format false"){
+        res.status(454).json(pushingUser)
+    }else if (pushingUser == "Password format false"){
+        res.status(455).json(pushingUser)
+    }else {
+        res.status(500).json(pushingUser)
+    }
+}
+
+export async function addPoint(req, res) {
     try {
         const { username } = req.body
         const result = await database.addPoint(username) 
@@ -57,7 +84,7 @@ async function addPoint(req, res) {
     }
 }
 
-async function getPoints(req, res) {
+export async function getPoints(req, res) {
     try {
         const { username } = req.body
         const result = await database.getPoints(username)
@@ -72,7 +99,7 @@ async function getPoints(req, res) {
     }
 }
 
-async function getAllUsers(req, res) {
+export async function getAllUsers(req, res) {
     try {
         const result = await database.getAllUsersForScoreboard()
 
@@ -84,11 +111,4 @@ async function getAllUsers(req, res) {
     }catch (err) {
         res.status(500).json("Something went wrong here: " + err)
     }
-}
-
-module.exports = {
-    createUsername,
-    addPoint,
-    getPoints,
-    getAllUsers
 }
